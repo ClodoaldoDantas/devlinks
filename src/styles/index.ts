@@ -1,6 +1,9 @@
 import { createStitches } from '@stitches/react'
 
 export const { styled, globalCss } = createStitches({
+  media: {
+    sm: '(max-width: 575px)',
+  },
   theme: {
     colors: {
       white: '#FFFFFF',
