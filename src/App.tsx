@@ -1,4 +1,4 @@
-import { SignIn } from './pages/SignIn'
+import { SignUp } from './pages/SignUp'
 import { globalStyles } from './styles/global'
 
 export function App() {
@@ -6,7 +6,7 @@ export function App() {
 
   return (
     <>
-      <SignIn />
+      <SignUp />
     </>
   )
 }
