@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Button } from '../../components/Button'
 import { Card } from '../../components/Card'
 import { Textarea } from '../../components/Textarea'
@@ -22,7 +23,7 @@ export function SignUp() {
 
         <S.Footer>
           <p>
-            Já tem uma conta? <a href="#">Faça login</a>
+            Já tem uma conta? <Link to="/">Faça login</Link>
           </p>
         </S.Footer>
       </Card>

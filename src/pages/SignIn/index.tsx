@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Button } from '../../components/Button'
 import { Card } from '../../components/Card'
 import { TextInput } from '../../components/TextInput'
@@ -20,7 +21,7 @@ export function SignIn() {
 
         <S.Footer>
           <p>
-            Não tem uma conta? <a href="#">Registre-se</a>
+            Não tem uma conta? <Link to="/sign-up">Registre-se</Link>
           </p>
         </S.Footer>
       </Card>
