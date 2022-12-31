@@ -30,12 +30,8 @@ export const Header = styled('header', {
 })
 
 export const Form = styled('form', {
-  'input:first-child': {
-    marginBottom: '0.625rem',
-  },
-
   button: {
-    margin: '1.5rem 0',
+    margin: '0.875rem 0 1.5rem',
   },
 })
 

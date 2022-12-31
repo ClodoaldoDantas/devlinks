@@ -1,5 +1,9 @@
 import { styled } from '../../styles'
 
+export const FormGroup = styled('div', {
+  marginBottom: '0.625rem',
+})
+
 export const Textarea = styled('textarea', {
   width: '100%',
   minHeight: '120px',
