@@ -1,12 +1,15 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import toast from 'react-hot-toast'
 import * as zod from 'zod'
 
 import { Button } from '../../components/Button'
 import { Card } from '../../components/Card'
 import { Textarea } from '../../components/Textarea'
 import { TextInput } from '../../components/TextInput'
+import { http } from '../../services/http'
+import { errorHandler } from '../../utils/errorHandler'
 import * as S from './styles'
 
 const signUpFormSchema = zod.object({
@@ -18,6 +21,8 @@ const signUpFormSchema = zod.object({
 type SignUpFormData = zod.infer<typeof signUpFormSchema>
 
 export function SignUp() {
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
@@ -32,8 +37,14 @@ export function SignUp() {
   })
 
   const handleSignUp: SubmitHandler<SignUpFormData> = async (data) => {
-    await new Promise((resolve) => setTimeout(resolve, 700))
-    console.log(data)
+    try {
+      await http.post('users', data)
+      toast.success('Cadastro realizado com sucesso! Faça login para continuar')
+
+      navigate('/')
+    } catch (err) {
+      errorHandler(err)
+    }
   }
 
   return (
