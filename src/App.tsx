@@ -1,7 +1,8 @@
 import { BrowserRouter } from 'react-router-dom'
 import { AppRoutes } from './routes'
 import { globalStyles } from './styles/global'
-import { Toaster } from 'react-hot-toast'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.min.css'
 
 export function App() {
   globalStyles()
@@ -9,7 +10,7 @@ export function App() {
   return (
     <BrowserRouter>
       <AppRoutes />
-      <Toaster position="top-right" />
+      <ToastContainer position="top-right" theme="colored" />
     </BrowserRouter>
   )
 }
