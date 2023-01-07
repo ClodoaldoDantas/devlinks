@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
+import { Avatar } from '../Avatar'
 import { Logo } from '../Logo'
 import * as S from './styles'
 
@@ -14,10 +15,14 @@ export function Header() {
         </Link>
 
         <S.Profile>
-          <strong>{user?.username}</strong>
-          <button type="button" onClick={signOut}>
-            Sair da conta
-          </button>
+          <Avatar />
+
+          <div>
+            <strong>{user?.username}</strong>
+            <button type="button" onClick={signOut}>
+              Sair da conta
+            </button>
+          </div>
         </S.Profile>
       </S.HeaderContainer>
     </S.Header>

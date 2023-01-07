@@ -17,20 +17,26 @@ export const HeaderContainer = styled('div', {
 
 export const Profile = styled('div', {
   display: 'flex',
-  flexDirection: 'column',
-  gap: '0.25rem',
+  alignItems: 'center',
+  gap: '0.75rem',
 
-  strong: {
-    fontSize: '$sm',
-    fontWeight: '$semibold',
-    color: '$white',
-  },
+  div: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 2,
 
-  button: {
-    border: 0,
-    backgroundColor: 'transparent',
-    fontSize: '$sm',
-    color: '$purple500',
-    textAlign: 'left',
+    strong: {
+      fontSize: '$sm',
+      fontWeight: '$semibold',
+      color: '$white',
+    },
+
+    button: {
+      border: 0,
+      backgroundColor: 'transparent',
+      fontSize: '$sm',
+      color: '$purple500',
+      textAlign: 'left',
+    },
   },
 })
