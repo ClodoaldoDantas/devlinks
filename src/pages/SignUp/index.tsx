@@ -8,6 +8,7 @@ import { Button } from '../../components/Button'
 import { Card } from '../../components/Card'
 import { Textarea } from '../../components/Textarea'
 import { TextInput } from '../../components/TextInput'
+import { Logo } from '../../components/Logo'
 import { http } from '../../services/http'
 import { errorHandler } from '../../utils/errorHandler'
 import * as S from './styles'
@@ -51,7 +52,7 @@ export function SignUp() {
     <S.Container>
       <Card>
         <S.Header>
-          <h1>💻 DevLinks</h1>
+          <Logo />
           <p>Tudo o que você é. Em um simples link.</p>
         </S.Header>
 

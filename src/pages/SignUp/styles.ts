@@ -17,10 +17,7 @@ export const Header = styled('header', {
   marginBottom: '1.5rem',
 
   h1: {
-    fontSize: '$2xl',
-    fontWeight: '$semibold',
     marginBottom: '0.875rem',
-    color: '$white',
   },
 
   p: {

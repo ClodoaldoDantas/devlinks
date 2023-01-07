@@ -6,6 +6,9 @@ import * as zod from 'zod'
 import { Button } from '../../components/Button'
 import { Card } from '../../components/Card'
 import { TextInput } from '../../components/TextInput'
+import { Logo } from '../../components/Logo'
+import { useAuth } from '../../hooks/useAuth'
+
 import * as S from './styles'
 
 const signInFormSchema = zod.object({
@@ -16,6 +19,8 @@ const signInFormSchema = zod.object({
 type SignInFormData = zod.infer<typeof signInFormSchema>
 
 export function SignIn() {
+  const { signIn } = useAuth()
+
   const {
     register,
     handleSubmit,
@@ -28,16 +33,15 @@ export function SignIn() {
     },
   })
 
-  const handleSignIn: SubmitHandler<SignInFormData> = async (data) => {
-    await new Promise((resolve) => setTimeout(resolve, 700))
-    console.log(data)
+  const handleSignIn: SubmitHandler<SignInFormData> = (data) => {
+    signIn(data)
   }
 
   return (
     <S.Container>
       <Card>
         <S.Header>
-          <h1>💻 DevLinks</h1>
+          <Logo />
           <p>Tudo o que você é. Em um simples link.</p>
         </S.Header>
 
