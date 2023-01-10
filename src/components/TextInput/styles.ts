@@ -17,4 +17,9 @@ export const Input = styled('input', {
   '&::placeholder': {
     color: '$gray500',
   },
+
+  '&:disabled': {
+    opacity: 0.9,
+    cursor: 'not-allowed',
+  },
 })

@@ -9,8 +9,8 @@ export const AvatarRoot = styled(AvatarPrimitive.Root, {
   variants: {
     size: {
       md: {
-        width: 40,
-        height: 40,
+        width: 44,
+        height: 44,
       },
       lg: {
         width: 96,
