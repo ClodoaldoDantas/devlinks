@@ -25,7 +25,7 @@ export const Profile = styled('div', {
     flexDirection: 'column',
     gap: 2,
 
-    strong: {
+    a: {
       fontSize: '$sm',
       fontWeight: '$semibold',
       color: '$white',

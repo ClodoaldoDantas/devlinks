@@ -6,7 +6,7 @@ export const FormGroup = styled('div', {
 
 export const Textarea = styled('textarea', {
   width: '100%',
-  minHeight: '120px',
+  minHeight: '150px',
   padding: '1rem',
   outline: 0,
   backgroundColor: '$gray700',

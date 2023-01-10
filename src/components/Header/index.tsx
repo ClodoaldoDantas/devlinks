@@ -15,10 +15,14 @@ export function Header() {
         </Link>
 
         <S.Profile>
-          <Avatar />
+          {user?.avatar ? (
+            <Avatar src={user.avatar} alt={user.username} />
+          ) : (
+            <Avatar />
+          )}
 
           <div>
-            <strong>{user?.username}</strong>
+            <Link to="/admin/profile">{user?.username}</Link>
             <button type="button" onClick={signOut}>
               Sair da conta
             </button>

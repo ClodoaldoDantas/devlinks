@@ -13,7 +13,8 @@ import { errorHandler } from '../utils/errorHandler'
 interface User {
   id: string
   username: string
-  bio: string
+  bio: string | null
+  avatar: string | null
 }
 
 interface SignInCredentials {
@@ -24,6 +25,8 @@ interface SignInCredentials {
 interface AuthContextData {
   signIn: (credentials: SignInCredentials) => Promise<void>
   signOut: () => void
+  updateProfile: (field: 'avatar' | 'bio', value: string) => void
+
   user: User | null
   appLoading: boolean
   isAuthenticated: boolean
@@ -67,6 +70,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setUser(null)
   }, [])
 
+  const updateProfile = useCallback(
+    (field: 'avatar' | 'bio', value: string) => {
+      setUser((state) => ({ ...state, [field]: value } as User))
+    },
+    [],
+  )
+
   useEffect(() => {
     const token = localStorage.getItem('@devlinks:token')
 
@@ -90,7 +100,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   return (
     <AuthContext.Provider
-      value={{ appLoading, isAuthenticated, user, signIn, signOut }}
+      value={{
+        appLoading,
+        isAuthenticated,
+        user,
+        signIn,
+        signOut,
+        updateProfile,
+      }}
     >
       {children}
     </AuthContext.Provider>

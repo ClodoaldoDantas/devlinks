@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import { Links } from '../pages/Links'
+import { Profile } from '../pages/Profile'
 import { SignIn } from '../pages/SignIn'
 import { SignUp } from '../pages/SignUp'
 import { AdminRoutes } from './admin'
@@ -12,6 +13,7 @@ export function AppRoutes() {
 
       <Route path="/admin" element={<AdminRoutes />}>
         <Route path="links" element={<Links />} />
+        <Route path="profile" element={<Profile />} />
       </Route>
     </Routes>
   )

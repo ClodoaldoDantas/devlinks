@@ -8,7 +8,7 @@ interface AvatarProps extends ComponentProps<typeof S.AvatarImage> {
 
 const iconSize = {
   md: 20,
-  lg: 40,
+  lg: 36,
 }
 
 export function Avatar({ size = 'md', ...rest }: AvatarProps) {
