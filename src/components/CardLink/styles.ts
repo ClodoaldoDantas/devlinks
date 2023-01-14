@@ -4,6 +4,15 @@ export const Card = styled('div', {
   padding: '1rem',
   backgroundColor: '$gray600',
   borderRadius: 5,
+
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+
+  '&:hover button': {
+    opacity: 1,
+    visibility: 'visible',
+  },
 })
 
 export const CardBody = styled('div', {
@@ -21,4 +30,21 @@ export const CardBody = styled('div', {
     fontSize: '$sm',
     color: '#808080',
   },
+})
+
+export const IconButton = styled('button', {
+  border: 0,
+  borderRadius: 5,
+  backgroundColor: '$red500',
+  color: '$white',
+
+  height: 36,
+  width: 36,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+
+  opacity: 0,
+  visibility: 'hidden',
+  transition: 'all .1s linear',
 })

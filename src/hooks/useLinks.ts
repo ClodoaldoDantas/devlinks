@@ -27,11 +27,21 @@ export function useLinks() {
     }
   }, [])
 
+  const deleteLink = useCallback(async (link_id: string) => {
+    try {
+      await http.delete(`links/${link_id}`)
+      setLinks((state) => state.filter((link) => link.id !== link_id))
+    } catch {
+      throw new Error('Não foi possível remover o link')
+    }
+  }, [])
+
   return {
     links,
     isLoading,
     isError,
     error,
     createLink,
+    deleteLink,
   }
 }

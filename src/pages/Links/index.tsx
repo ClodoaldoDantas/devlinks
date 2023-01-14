@@ -21,7 +21,7 @@ const newLinkFormSchema = zod.object({
 export type NewLinkFormData = zod.infer<typeof newLinkFormSchema>
 
 export function Links() {
-  const { links, isLoading, isError, createLink } = useLinks()
+  const { links, isLoading, isError, createLink, deleteLink } = useLinks()
   const [open, setOpen] = useState(false)
 
   const newFormLink = useForm<NewLinkFormData>({
@@ -52,6 +52,18 @@ export function Links() {
     }
   }
 
+  const handleDeleteLink = async (link_id: string) => {
+    if (!window.confirm('Tem certeza que deseja remover o link ?')) return
+
+    try {
+      await deleteLink(link_id)
+      toast.success('Link removido com sucesso')
+      reset()
+    } catch (err) {
+      toast.error((err as Error).message)
+    }
+  }
+
   if (isLoading) {
     return (
       <S.Loading>
@@ -78,7 +90,7 @@ export function Links() {
 
       <S.Links>
         {links?.map((link) => (
-          <CardLink data={link} key={link.id} />
+          <CardLink data={link} key={link.id} onDelete={handleDeleteLink} />
         ))}
       </S.Links>
     </S.Container>
