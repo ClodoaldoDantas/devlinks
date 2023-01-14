@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
-export function errorHandler(err: unknown) {
+export function errorHandler(err: any) {
   // eslint-disable-next-line no-console
   console.error(err)
 
