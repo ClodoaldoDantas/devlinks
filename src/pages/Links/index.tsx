@@ -3,12 +3,11 @@ import { toast } from 'react-toastify'
 import { Button } from '../../components/Button'
 import { CardLink } from '../../components/CardLink'
 import { Spinner } from '../../components/Spinner'
-import { useFetch } from '../../hooks/useFetch'
-import { Link } from '../../interfaces/link'
+import { useLinks } from '../../hooks/useLinks'
 import * as S from './styles'
 
 export function Links() {
-  const { data: links, isLoading, isError } = useFetch<Link[]>('links')
+  const { links, isLoading, isError } = useLinks()
 
   useEffect(() => {
     if (isError) {
