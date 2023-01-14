@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Link } from '../interfaces/link'
 import { http } from '../services/http'
 
@@ -16,10 +16,22 @@ export function useLinks() {
       .finally(() => setIsLoading(false))
   }, [])
 
+  const createLink = useCallback(async (data: Omit<Link, 'id'>) => {
+    try {
+      const response = await http.post<Link>('links', data)
+      const link = response.data
+
+      setLinks((state) => [...state, link])
+    } catch {
+      throw new Error('Não foi possível adicionar o link')
+    }
+  }, [])
+
   return {
     links,
     isLoading,
     isError,
     error,
+    createLink,
   }
 }

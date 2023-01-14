@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
+import { useForm, FormProvider } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as zod from 'zod'
+
 import { Button } from '../../components/Button'
 import { CardLink } from '../../components/CardLink'
 import { Spinner } from '../../components/Spinner'
@@ -7,17 +11,46 @@ import { useLinks } from '../../hooks/useLinks'
 import * as Dialog from '@radix-ui/react-dialog'
 import * as S from './styles'
 
-import { NewLinkModal } from '../../components/NewLinkModal'
+import { NewLinkModal } from './NewLinkModal'
+
+const newLinkFormSchema = zod.object({
+  label: zod.string().min(1, 'Label é obrigatória'),
+  url: zod.string().url('Digite uma URL válida'),
+})
+
+export type NewLinkFormData = zod.infer<typeof newLinkFormSchema>
 
 export function Links() {
-  const { links, isLoading, isError } = useLinks()
+  const { links, isLoading, isError, createLink } = useLinks()
   const [open, setOpen] = useState(false)
+
+  const newFormLink = useForm<NewLinkFormData>({
+    resolver: zodResolver(newLinkFormSchema),
+    defaultValues: {
+      label: '',
+      url: '',
+    },
+  })
+
+  const { reset } = newFormLink
 
   useEffect(() => {
     if (isError) {
       toast.error('Não foi possível buscar os links')
     }
   }, [isError])
+
+  const handleCreateNewLink = async (data: NewLinkFormData) => {
+    try {
+      await createLink(data)
+      toast.success('Link adicionado com sucesso')
+      reset()
+    } catch (err) {
+      toast.error((err as Error).message)
+    } finally {
+      setOpen(false)
+    }
+  }
 
   if (isLoading) {
     return (
@@ -37,7 +70,9 @@ export function Links() {
             <Button>Adicionar novo</Button>
           </Dialog.Trigger>
 
-          <NewLinkModal />
+          <FormProvider {...newFormLink}>
+            <NewLinkModal onSubmit={handleCreateNewLink} />
+          </FormProvider>
         </Dialog.Root>
       </S.Header>
 
