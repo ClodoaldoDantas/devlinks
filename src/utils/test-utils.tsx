@@ -1,15 +1,25 @@
 /* eslint-disable import/export */
 import { cleanup, render } from '@testing-library/react'
+import { BrowserRouter } from 'react-router-dom'
 import { afterEach } from 'vitest'
+import { AuthProvider } from '../contexts/AuthContext'
 
 afterEach(() => {
   cleanup()
 })
 
+const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <BrowserRouter>
+      <AuthProvider>{children}</AuthProvider>
+    </BrowserRouter>
+  )
+}
+
 const customRender = (ui: React.ReactElement, options = {}) =>
   render(ui, {
     // wrap provider(s) here if needed
-    wrapper: ({ children }) => children,
+    wrapper: AllTheProviders,
     ...options,
   })
 
