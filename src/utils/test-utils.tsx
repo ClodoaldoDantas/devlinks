@@ -8,7 +8,11 @@ afterEach(() => {
   cleanup()
 })
 
-const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
+export const AllTheProviders = ({
+  children,
+}: {
+  children: React.ReactNode
+}) => {
   return (
     <BrowserRouter>
       <AuthProvider>{children}</AuthProvider>
