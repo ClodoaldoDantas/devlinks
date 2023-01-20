@@ -1,5 +1,5 @@
 import { renderHook, act, waitFor } from '@testing-library/react'
-import { userMock } from '../mocks/handlers'
+import { userMock } from '../mocks/data'
 import { TOKEN_STORAGE } from '../utils/constants'
 import { AllTheProviders } from '../utils/test-utils'
 import { useAuth } from './useAuth'
