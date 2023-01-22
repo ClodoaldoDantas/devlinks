@@ -10,6 +10,10 @@ const signInRequest = rest.post(`${baseURL}session`, (req, res, ctx) => {
   return res(ctx.status(200), ctx.json({ token: 'test-token', user: userMock }))
 })
 
+const signUpRequest = rest.post(`${baseURL}users`, (req, res, ctx) => {
+  return res(ctx.status(200))
+})
+
 const getProfileRequest = rest.get(`${baseURL}me`, (req, res, ctx) => {
   return res(ctx.status(200), ctx.json(userMock))
 })
@@ -31,6 +35,13 @@ const deleteLinkRequest = rest.delete(
 )
 
 /* Request Failure */
+export const signUpRequestFailure = rest.post(
+  `${baseURL}users`,
+  (req, res, ctx) => {
+    return res(ctx.status(400), ctx.json({ message: 'Usuário já cadastrado' }))
+  },
+)
+
 export const getLinksRequestFailure = rest.get(
   `${baseURL}links`,
   (req, res, ctx) => {
@@ -54,6 +65,7 @@ export const deleteLinkRequestFailure = rest.delete(
 
 export const handlers = [
   signInRequest,
+  signUpRequest,
   getProfileRequest,
   getLinksRequest,
   postLinksRequest,

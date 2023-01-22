@@ -1,6 +1,7 @@
 /* eslint-disable import/export */
 import { cleanup, render } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 import { afterEach } from 'vitest'
 import { AuthProvider } from '../contexts/AuthContext'
 
@@ -16,6 +17,7 @@ export const AllTheProviders = ({
   return (
     <BrowserRouter>
       <AuthProvider>{children}</AuthProvider>
+      <ToastContainer position="top-right" theme="colored" />
     </BrowserRouter>
   )
 }

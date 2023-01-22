@@ -12,7 +12,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     return (
       <FormGroup>
         <S.Input name={name} {...rest} ref={ref} />
-        {!!error && <ErrorMessage>{error?.message}</ErrorMessage>}
+        {!!error && <ErrorMessage role="alert">{error?.message}</ErrorMessage>}
       </FormGroup>
     )
   },

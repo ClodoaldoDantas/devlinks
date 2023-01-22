@@ -12,7 +12,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     return (
       <FormGroup>
         <S.Textarea name={name} {...rest} ref={ref} />
-        {!!error && <ErrorMessage>{error?.message}</ErrorMessage>}
+        {!!error && <ErrorMessage role="alert">{error?.message}</ErrorMessage>}
       </FormGroup>
     )
   },
