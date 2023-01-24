@@ -35,6 +35,16 @@ const deleteLinkRequest = rest.delete(
 )
 
 /* Request Failure */
+export const signInRequestFailure = rest.post(
+  `${baseURL}session`,
+  (req, res, ctx) => {
+    return res(
+      ctx.status(400),
+      ctx.json({ message: 'usuário ou senha inválidos' }),
+    )
+  },
+)
+
 export const signUpRequestFailure = rest.post(
   `${baseURL}users`,
   (req, res, ctx) => {
