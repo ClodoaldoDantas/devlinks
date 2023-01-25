@@ -34,40 +34,56 @@ const deleteLinkRequest = rest.delete(
   },
 )
 
+const uploadAvatarRequest = rest.patch(`${baseURL}avatar`, (req, res, ctx) => {
+  return res(
+    ctx.status(200),
+    ctx.json({ avatar: 'http://test.com/avatar.png' }),
+  )
+})
+
+const updateBioRequest = rest.patch(`${baseURL}users`, (req, res, ctx) => {
+  return res(ctx.status(200), ctx.json({ bio: 'bio updated' }))
+})
+
 /* Request Failure */
-export const signInRequestFailure = rest.post(
-  `${baseURL}session`,
-  (req, res, ctx) => {
-    return res(
-      ctx.status(400),
-      ctx.json({ message: 'usuário ou senha inválidos' }),
-    )
-  },
-)
+const signInRequestFailure = rest.post(`${baseURL}session`, (req, res, ctx) => {
+  return res(
+    ctx.status(400),
+    ctx.json({ message: 'usuário ou senha inválidos' }),
+  )
+})
 
-export const signUpRequestFailure = rest.post(
-  `${baseURL}users`,
-  (req, res, ctx) => {
-    return res(ctx.status(400), ctx.json({ message: 'Usuário já cadastrado' }))
-  },
-)
+const signUpRequestFailure = rest.post(`${baseURL}users`, (req, res, ctx) => {
+  return res(ctx.status(400), ctx.json({ message: 'Usuário já cadastrado' }))
+})
 
-export const getLinksRequestFailure = rest.get(
+const getLinksRequestFailure = rest.get(`${baseURL}links`, (req, res, ctx) => {
+  return res.networkError(networkErrorMessage)
+})
+
+const postLinksRequestFailure = rest.post(
   `${baseURL}links`,
   (req, res, ctx) => {
     return res.networkError(networkErrorMessage)
   },
 )
 
-export const postLinksRequestFailure = rest.post(
-  `${baseURL}links`,
-  (req, res, ctx) => {
-    return res.networkError(networkErrorMessage)
-  },
-)
-
-export const deleteLinkRequestFailure = rest.delete(
+const deleteLinkRequestFailure = rest.delete(
   `${baseURL}links/:id`,
+  (req, res, ctx) => {
+    return res.networkError(networkErrorMessage)
+  },
+)
+
+const uploadAvatarRequestFailure = rest.patch(
+  `${baseURL}avatar`,
+  (req, res, ctx) => {
+    return res.networkError(networkErrorMessage)
+  },
+)
+
+const updateBioRequestFailure = rest.patch(
+  `${baseURL}users`,
   (req, res, ctx) => {
     return res.networkError(networkErrorMessage)
   },
@@ -80,4 +96,16 @@ export const handlers = [
   getLinksRequest,
   postLinksRequest,
   deleteLinkRequest,
+  uploadAvatarRequest,
+  updateBioRequest,
 ]
+
+export {
+  signInRequestFailure,
+  signUpRequestFailure,
+  getLinksRequestFailure,
+  postLinksRequestFailure,
+  deleteLinkRequestFailure,
+  uploadAvatarRequestFailure,
+  updateBioRequestFailure,
+}

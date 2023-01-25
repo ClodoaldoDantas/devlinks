@@ -85,11 +85,16 @@ export function Profile() {
               <Avatar size="lg" />
             )}
 
-            <S.UploadButton htmlFor="avatar">
+            <S.UploadButton htmlFor="upload-input">
               <Camera size={18} />
             </S.UploadButton>
 
-            <S.InputFile type="file" id="avatar" onChange={handleInputChange} />
+            <S.InputFile
+              type="file"
+              id="upload-input"
+              data-testid="upload-input"
+              onChange={handleInputChange}
+            />
           </S.Preview>
 
           <TextInput
