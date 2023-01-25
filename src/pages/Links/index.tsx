@@ -13,7 +13,7 @@ import * as S from './styles'
 
 import { NewLinkModal } from './NewLinkModal'
 
-const newLinkFormSchema = zod.object({
+export const newLinkFormSchema = zod.object({
   label: zod.string().min(1, 'Label é obrigatória'),
   url: zod.string().url('Digite uma URL válida'),
 })
