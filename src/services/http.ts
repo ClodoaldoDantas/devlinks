@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { TOKEN_STORAGE } from '../utils/constants'
 
 export const http = axios.create({
   baseURL: 'http://localhost:3333/',
@@ -6,7 +7,7 @@ export const http = axios.create({
 
 http.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('@devlinks:token')
+    const token = localStorage.getItem(TOKEN_STORAGE)
 
     if (!config.headers) {
       config.headers = {}

@@ -9,13 +9,17 @@ interface CardLinkProps {
 
 export function CardLink({ data, onDelete }: CardLinkProps) {
   return (
-    <S.Card>
+    <S.Card data-testid="card-link">
       <S.CardBody>
         <strong>{data.label}</strong>
         <span>{data.url}</span>
       </S.CardBody>
 
-      <S.IconButton type="button" onClick={() => onDelete(data.id)}>
+      <S.IconButton
+        type="button"
+        aria-label="Deletar link"
+        onClick={() => onDelete(data.id)}
+      >
         <Trash size={24} />
       </S.IconButton>
     </S.Card>

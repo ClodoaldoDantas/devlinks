@@ -13,7 +13,7 @@ const iconSize = {
 
 export function Avatar({ size = 'md', ...rest }: AvatarProps) {
   return (
-    <S.AvatarRoot size={size}>
+    <S.AvatarRoot data-testid="avatar" size={size}>
       <S.AvatarImage {...rest} />
 
       <S.AvatarFallback delayMs={600}>

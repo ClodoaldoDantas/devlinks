@@ -9,6 +9,7 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { http } from '../services/http'
 import { errorHandler } from '../utils/errorHandler'
+import { TOKEN_STORAGE } from '../utils/constants'
 
 interface User {
   id: string
@@ -56,7 +57,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         const response = await http.post<SignInResponse>('session', credentials)
         setUser(response.data.user)
 
-        localStorage.setItem('@devlinks:token', response.data.token)
+        localStorage.setItem(TOKEN_STORAGE, response.data.token)
         navigate('/admin/links')
       } catch (err) {
         errorHandler(err)
@@ -66,7 +67,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   )
 
   const signOut = useCallback(() => {
-    localStorage.removeItem('@devlinks:token')
+    localStorage.removeItem(TOKEN_STORAGE)
     setUser(null)
   }, [])
 
@@ -78,7 +79,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   )
 
   useEffect(() => {
-    const token = localStorage.getItem('@devlinks:token')
+    const token = localStorage.getItem(TOKEN_STORAGE)
 
     if (!token) {
       setAppLoading(false)
