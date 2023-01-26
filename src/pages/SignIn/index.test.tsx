@@ -2,16 +2,20 @@ import { SignIn } from '.'
 import { render, screen, userEvent } from '../../utils/test-utils'
 
 import { vi } from 'vitest'
+import { server } from '../../mocks/server'
+import { signInRequestFailure } from '../../mocks/handlers'
+import * as useAuth from '../../hooks/useAuth'
 
-const mockSignInFn = vi.fn()
-
-vi.mock('../../hooks/useAuth', () => ({
-  useAuth: () => ({
-    signIn: mockSignInFn,
-  }),
-}))
+const credentials = {
+  username: 'johndoe',
+  password: '123',
+}
 
 describe('SignUp page', () => {
+  beforeEach(() => {
+    vi.restoreAllMocks()
+  })
+
   it('should render correctly', () => {
     render(<SignIn />)
 
@@ -31,12 +35,13 @@ describe('SignUp page', () => {
   })
 
   it('should submit form when fields is valid', async () => {
-    render(<SignIn />)
+    const signInFn = vi.fn()
 
-    const credentials = {
-      username: 'johndoe',
-      password: '123',
-    }
+    vi.spyOn(useAuth, 'useAuth').mockReturnValue({
+      signIn: signInFn,
+    } as any)
+
+    render(<SignIn />)
 
     const inputUsername = screen.getByPlaceholderText('Usuário')
     const inputPassword = screen.getByPlaceholderText('Senha')
@@ -46,6 +51,23 @@ describe('SignUp page', () => {
     await userEvent.type(inputPassword, credentials.password)
     await userEvent.click(button)
 
-    expect(mockSignInFn).toHaveBeenCalledWith(credentials)
+    expect(signInFn).toHaveBeenCalledWith(credentials)
+  })
+
+  it('should display error if login fails', async () => {
+    server.use(signInRequestFailure)
+    render(<SignIn />)
+
+    const inputUsername = screen.getByPlaceholderText('Usuário')
+    const inputPassword = screen.getByPlaceholderText('Senha')
+    const button = screen.getByRole('button', { name: /entrar/i })
+
+    await userEvent.type(inputUsername, credentials.username)
+    await userEvent.type(inputPassword, credentials.password)
+    await userEvent.click(button)
+
+    expect(
+      await screen.findByText('usuário ou senha inválidos'),
+    ).toBeInTheDocument()
   })
 })
