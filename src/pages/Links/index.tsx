@@ -66,7 +66,7 @@ export function Links() {
 
   if (isLoading) {
     return (
-      <S.Loading>
+      <S.Loading data-testid="loading">
         <Spinner />
       </S.Loading>
     )

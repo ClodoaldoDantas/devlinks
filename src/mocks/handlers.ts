@@ -108,4 +108,5 @@ export {
   deleteLinkRequestFailure,
   uploadAvatarRequestFailure,
   updateBioRequestFailure,
+  getLinksRequest,
 }

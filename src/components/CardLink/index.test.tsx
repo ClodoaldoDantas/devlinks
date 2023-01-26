@@ -20,6 +20,7 @@ describe('CardLink component', () => {
   it('should render correctly', () => {
     const { data } = renderCardLink()
 
+    expect(screen.getByTestId('card-link')).toBeInTheDocument()
     expect(screen.getByText(data.label)).toBeInTheDocument()
     expect(screen.getByText(data.url)).toBeInTheDocument()
     expect(screen.getByRole('button')).toBeInTheDocument()
