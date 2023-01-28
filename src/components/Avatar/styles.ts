@@ -35,4 +35,15 @@ export const AvatarFallback = styled(AvatarPrimitive.Fallback, {
   justifyContent: 'center',
   backgroundColor: '$gray700',
   color: '$gray500',
+
+  variants: {
+    variant: {
+      primary: {
+        backgroundColor: '$gray700',
+      },
+      secondary: {
+        backgroundColor: '$gray600',
+      },
+    },
+  },
 })

@@ -11,7 +11,7 @@ import { http } from '../services/http'
 import { errorHandler } from '../utils/errorHandler'
 import { TOKEN_STORAGE } from '../utils/constants'
 
-interface User {
+export interface User {
   id: string
   username: string
   bio: string | null

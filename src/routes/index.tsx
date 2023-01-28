@@ -3,6 +3,7 @@ import { Links } from '../pages/Links'
 import { Profile } from '../pages/Profile'
 import { SignIn } from '../pages/SignIn'
 import { SignUp } from '../pages/SignUp'
+import { UserPage } from '../pages/User'
 import { AdminRoutes } from './admin'
 
 export function AppRoutes() {
@@ -10,6 +11,8 @@ export function AppRoutes() {
     <Routes>
       <Route path="/" element={<SignIn />} />
       <Route path="/sign-up" element={<SignUp />} />
+
+      <Route path="/:userId" element={<UserPage />} />
 
       <Route path="/admin" element={<AdminRoutes />}>
         <Route path="links" element={<Links />} />
