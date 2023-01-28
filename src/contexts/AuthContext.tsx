@@ -15,7 +15,7 @@ interface User {
   id: string
   username: string
   bio: string | null
-  avatar: string | null
+  avatar?: string
 }
 
 interface SignInCredentials {
@@ -55,9 +55,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
     async (credentials: SignInCredentials) => {
       try {
         const response = await http.post<SignInResponse>('session', credentials)
-        setUser(response.data.user)
+        const data = response.data
 
+        setUser({ ...data.user, avatar: data.user.avatar ?? undefined })
         localStorage.setItem(TOKEN_STORAGE, response.data.token)
+
         navigate('/admin/links')
       } catch (err) {
         errorHandler(err)
@@ -89,7 +91,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
     http
       .get('me')
       .then((response) => {
-        setUser(response.data)
+        const data = response.data
+        setUser({ ...data, avatar: data.avatar ?? undefined })
       })
       .catch(() => {
         signOut()

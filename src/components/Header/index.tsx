@@ -15,11 +15,7 @@ export function Header() {
         </Link>
 
         <S.Profile>
-          {user?.avatar ? (
-            <Avatar src={user.avatar} alt={user.username} />
-          ) : (
-            <Avatar />
-          )}
+          <Avatar src={user?.avatar} alt={user?.username} />
 
           <div>
             <Link to="/admin/profile">{user?.username}</Link>

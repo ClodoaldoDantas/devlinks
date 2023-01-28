@@ -79,11 +79,7 @@ export function Profile() {
       <Card>
         <S.Form onSubmit={handleSubmit(handleUpdateProfile)}>
           <S.Preview>
-            {user?.avatar ? (
-              <Avatar src={user.avatar} alt={user.username} size="lg" />
-            ) : (
-              <Avatar size="lg" />
-            )}
+            <Avatar src={user?.avatar} alt={user?.username} size="lg" />
 
             <S.UploadButton htmlFor="upload-input">
               <Camera size={18} />
