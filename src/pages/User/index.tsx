@@ -21,7 +21,7 @@ export function UserPage() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await http.get(`users/${params.userId}`)
+        const response = await http.get(`users/${params.username}`)
         setData(response.data)
       } catch {
         setIsError(true)
@@ -31,7 +31,7 @@ export function UserPage() {
     }
 
     fetchUserData()
-  }, [params.userId])
+  }, [params.username])
 
   return (
     <S.Container>

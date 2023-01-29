@@ -12,7 +12,7 @@ export function AppRoutes() {
       <Route path="/" element={<SignIn />} />
       <Route path="/sign-up" element={<SignUp />} />
 
-      <Route path="/:userId" element={<UserPage />} />
+      <Route path="/:username" element={<UserPage />} />
 
       <Route path="/admin" element={<AdminRoutes />}>
         <Route path="links" element={<Links />} />
