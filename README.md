@@ -6,6 +6,8 @@
 
 O projeto corresponde a um agregador de links para desenvolvedores 👨‍💻.
 
+https://user-images.githubusercontent.com/32376905/215328937-daf82f92-65a8-4adb-aecd-1380800da6a1.mp4
+
 ## 🚀 Tecnologias
 
 Interface:
