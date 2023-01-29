@@ -10,17 +10,31 @@ export const Header = styled('div', {
   padding: '2rem 0',
 
   display: 'flex',
+  flexWrap: 'wrap',
   alignItems: 'center',
   justifyContent: 'space-between',
-
-  button: {
-    maxWidth: '12.5rem',
-  },
 
   h2: {
     fontSize: '$2xl',
     fontWeight: '$semibold',
     color: '$white',
+  },
+})
+
+export const HeaderActions = styled('div', {
+  maxWidth: 300,
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'flex-end',
+  gap: '1rem',
+
+  'button:first-child': {
+    width: 50,
+    fontSize: 0,
+  },
+
+  'button:last-child': {
+    width: 200,
   },
 })
 

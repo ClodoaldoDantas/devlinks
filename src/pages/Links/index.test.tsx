@@ -27,7 +27,7 @@ describe('Links page', () => {
     render(<Links />)
 
     await waitFor(() => {
-      expect(screen.getByText('🔗 Meus Links')).toBeInTheDocument()
+      expect(screen.getByText('Meus Links')).toBeInTheDocument()
       expect(
         screen.getByRole('button', { name: /adicionar novo/i }),
       ).toBeInTheDocument()
