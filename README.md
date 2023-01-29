@@ -29,6 +29,8 @@ npm install
 npm run dev
 ```
 
+> Caso tenha curiosidade, você pode conferir o repositorio do backend do projeto: [devlinks-api](https://github.com/ClodoaldoDantas/devlinks-api)
+
 ## 📝 Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
