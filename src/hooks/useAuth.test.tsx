@@ -56,7 +56,11 @@ describe('useAuth hook', () => {
     })
 
     await waitFor(() => {
-      expect(result.current.user).toEqual(userMock)
+      expect(result.current.user).toEqual({
+        ...userMock,
+        avatar: undefined,
+      })
+
       expect(result.current.isAuthenticated).toBe(true)
       expect(result.current.appLoading).toBe(false)
     })
@@ -65,7 +69,11 @@ describe('useAuth hook', () => {
   it('should logout user', async () => {
     const { result } = await renderHookAsync()
 
-    expect(result.current.user).toEqual(userMock)
+    expect(result.current.user).toEqual({
+      ...userMock,
+      avatar: undefined,
+    })
+
     expect(result.current.isAuthenticated).toEqual(true)
 
     act(() => {
@@ -79,7 +87,7 @@ describe('useAuth hook', () => {
   it('should update avatar', async () => {
     const { result } = await renderHookAsync()
 
-    expect(result.current.user?.avatar).toBeNull()
+    expect(result.current.user?.avatar).toBeUndefined()
 
     const newAvatar = 'https://via.placeholder.com/44'
 
