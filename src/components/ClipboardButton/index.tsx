@@ -8,6 +8,8 @@ export function ClipboardButton() {
   const [copied, setCopied] = useState(false)
   const { user } = useAuth()
 
+  const labelText = copied ? 'Copiado!' : 'Copiar URL'
+
   function handleOpenUrl() {
     const { protocol, host } = window.location
     const pageUrl = `${protocol}//${host}/${user?.username}`
@@ -21,12 +23,21 @@ export function ClipboardButton() {
   }
 
   return (
-    <S.ClipboardButton
-      onClick={handleOpenUrl}
-      onMouseLeave={handleMouseLeave}
-      disabled={copied}
-    >
-      {copied ? <Check /> : <Link />}
-    </S.ClipboardButton>
+    <S.Container>
+      <S.ClipboardButton
+        onClick={handleOpenUrl}
+        onMouseLeave={handleMouseLeave}
+        disabled={copied}
+        aria-label={labelText}
+      >
+        {copied ? (
+          <Check data-testid="icon-check" />
+        ) : (
+          <Link data-testid="icon-link" />
+        )}
+      </S.ClipboardButton>
+
+      <S.Tooltip data-testid="tooltip">{labelText}</S.Tooltip>
+    </S.Container>
   )
 }
