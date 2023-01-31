@@ -6,10 +6,6 @@ export const userMock = {
 }
 
 export const linksMock = [
-  { id: '1', label: 'Github', url: 'https://github.com/clodoaldodantas' },
-  {
-    id: '2',
-    label: 'Linkedin',
-    url: 'https://www.linkedin.com/in/clodoaldodantas/',
-  },
+  { id: '1', label: 'Github', url: 'url-test' },
+  { id: '2', label: 'Linkedin', url: 'url-test' },
 ]

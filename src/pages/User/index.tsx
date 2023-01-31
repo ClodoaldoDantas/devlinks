@@ -36,7 +36,7 @@ export function UserPage() {
   return (
     <S.Container>
       {isLoading ? (
-        <Spinner />
+        <Spinner data-testid="loading" />
       ) : isError ? (
         <p>Nenhum usuário encontrado</p>
       ) : (
@@ -55,7 +55,12 @@ export function UserPage() {
 
           <S.Links>
             {data?.links.map((link) => (
-              <Link key={link.id} href={link.url} target="_blank">
+              <Link
+                key={link.id}
+                href={link.url}
+                target="_blank"
+                data-testid="user-link"
+              >
                 {link.label}
               </Link>
             ))}

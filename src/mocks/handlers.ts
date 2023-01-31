@@ -45,6 +45,19 @@ const updateBioRequest = rest.patch(`${baseURL}users`, (req, res, ctx) => {
   return res(ctx.status(200), ctx.json({ bio: 'bio updated' }))
 })
 
+const getUserPageRequest = rest.get(
+  `${baseURL}users/:username`,
+  (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        ...userMock,
+        links: linksMock,
+      }),
+    )
+  },
+)
+
 /* Request Failure */
 const signInRequestFailure = rest.post(`${baseURL}session`, (req, res, ctx) => {
   return res(
@@ -89,6 +102,13 @@ const updateBioRequestFailure = rest.patch(
   },
 )
 
+const getUserPageRequestFailure = rest.get(
+  `${baseURL}users/:username`,
+  (req, res, ctx) => {
+    return res.networkError('User not found')
+  },
+)
+
 export const handlers = [
   signInRequest,
   signUpRequest,
@@ -98,6 +118,7 @@ export const handlers = [
   deleteLinkRequest,
   uploadAvatarRequest,
   updateBioRequest,
+  getUserPageRequest,
 ]
 
 export {
@@ -109,4 +130,5 @@ export {
   uploadAvatarRequestFailure,
   updateBioRequestFailure,
   getLinksRequest,
+  getUserPageRequestFailure,
 }

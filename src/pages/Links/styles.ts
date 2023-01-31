@@ -1,3 +1,4 @@
+import { Button } from '../../components/Button'
 import { styled } from '../../styles'
 
 export const Container = styled('div', {
@@ -27,15 +28,10 @@ export const HeaderActions = styled('div', {
   display: 'flex',
   justifyContent: 'flex-end',
   gap: '1rem',
+})
 
-  'button:first-child': {
-    width: 50,
-    fontSize: 0,
-  },
-
-  'button:last-child': {
-    width: 200,
-  },
+export const TriggerButton = styled(Button, {
+  width: 200,
 })
 
 export const Loading = styled('div', {
